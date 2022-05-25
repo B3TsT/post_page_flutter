@@ -9,7 +9,21 @@ class MyWebPage extends StatelessWidget {
       body: Center(
         child: Container(
           child: Column(
-            children: const [],
+            children: [
+              //Navigation Bar
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: const [
+                      // Home
+                      // Features
+                      // Screenshots
+                      // Contact
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),
