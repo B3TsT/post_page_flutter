@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:post_page/src/widget/responsive_widget.dart';
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends ResponsiveWidget {
   const HomeContent({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-      height: 250,
-    );
+  Widget buildDesktop(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  Widget buildMobile(BuildContext context) {
+    return Container();
   }
 }
