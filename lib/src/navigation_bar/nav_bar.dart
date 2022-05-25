@@ -18,7 +18,28 @@ class NavBar extends ResponsiveWidget {
 class DesktopNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return Container(
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 40.0,
+            ),
+            SizedBox(width: 10.0),
+            Text(
+              'Company Name',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.black87,
+                fontSize: 32,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
