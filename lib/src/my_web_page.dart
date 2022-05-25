@@ -7,6 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+final homeKey = GlobalKey();
+final featureKey = GlobalKey();
+final screenshotKey = GlobalKey();
+final contactKey = GlobalKey();
+
+final currentPageProvider = StateProvider<GlobalKey>((_) => homeKey);
+
 final scrolledProvider = StateProvider<bool>((_) => false);
 
 class MyWebPage extends HookConsumerWidget {
@@ -21,6 +28,9 @@ class MyWebPage extends HookConsumerWidget {
 
   const MyWebPage({Key? key}) : super(key: key);
 
+  void scrollTo(GlobalKey key) => Scrollable.ensureVisible(key.currentContext!,
+      duration: Duration(milliseconds: 500));
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _controller = useScrollController();
@@ -32,6 +42,10 @@ class MyWebPage extends HookConsumerWidget {
 
     double width = MediaQuery.of(context).size.width;
     double maxWidth = width > 1200 ? 1200 : width;
+
+    ref
+        .watch(currentPageProvider.state)
+        .addListener(scrollTo, fireImmediately: false);
 
     return Scaffold(
       body: Center(
@@ -45,15 +59,15 @@ class MyWebPage extends HookConsumerWidget {
                 child: SingleChildScrollView(
                   controller: _controller,
                   child: Column(
-                    children: const [
+                    children: [
                       // Home
-                      HomeContent(),
+                      HomeContent(key: homeKey),
                       // Features
-                      FeaturesContent(),
+                      FeaturesContent(key: featureKey),
                       // Screenshots
-                      ScreenshotsContent(),
+                      ScreenshotsContent(key: screenshotKey),
                       // Contact
-                      ContactContent(),
+                      ContactContent(key: contactKey),
                     ],
                   ),
                 ),
