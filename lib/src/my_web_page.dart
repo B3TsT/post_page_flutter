@@ -10,9 +10,13 @@ class MyWebPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double maxWidth = width > 1200 ? 1200 : width;
+
     return Scaffold(
       body: Center(
         child: Container(
+          width: maxWidth,
           child: Column(
             children: [
               //Navigation Bar
