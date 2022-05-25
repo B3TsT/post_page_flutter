@@ -60,9 +60,46 @@ class DesktopNavBar extends HookConsumerWidget {
   }
 }
 
-class MobileNavBar extends StatelessWidget {
+class MobileNavBar extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    throw UnimplementedError();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isScrolled = ref.watch(scrolledProvider);
+
+    final navBarColor = isScrolled ? Colors.blue : Colors.white;
+
+    return Container(
+      color: navBarColor,
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 40.0,
+            ),
+            SizedBox(width: 10.0),
+            Text(
+              'Company Name',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.black87,
+                fontSize: 32,
+              ),
+            ),
+            Expanded(child: Container()),
+            Material(
+              child: InkWell(
+                splashColor: Colors.white60,
+                onTap: () {},
+                child: Icon(
+                  Icons.menu,
+                  color: Colors.black54,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
