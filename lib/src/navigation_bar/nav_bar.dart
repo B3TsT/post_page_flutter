@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:post_page/src/my_web_page.dart';
 import 'package:post_page/src/navigation_bar/nav_bar_buttom.dart';
 import 'package:post_page/src/widget/responsive_widget.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 class NavBar extends ResponsiveWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -87,27 +86,36 @@ class MobileNavBar extends HookConsumerWidget {
         AnimatedContainer(
           margin: EdgeInsets.only(top: 75.0),
           curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
+          duration: Duration(milliseconds: 350),
           height: containerHeight.value,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 NavBarButtom(
-                    onTap: () =>
-                        ref.read(currentPageProvider.state).state = homeKey,
-                    text: 'Home'),
+                  text: 'Home',
+                  onTap: () {
+                    ref.read(currentPageProvider.state).state = homeKey;
+                    containerHeight.value = 0;
+                  },
+                ),
                 NavBarButtom(
-                    onTap: () =>
-                        ref.read(currentPageProvider.state).state = featureKey,
-                    text: 'Features'),
+                    text: 'Features',
+                    onTap: () {
+                      ref.read(currentPageProvider.state).state = featureKey;
+                      containerHeight.value = 0;
+                    }),
                 NavBarButtom(
-                    onTap: () => ref.read(currentPageProvider.state).state =
-                        screenshotKey,
-                    text: 'Screenshots'),
+                    text: 'Screenshots',
+                    onTap: () {
+                      ref.read(currentPageProvider.state).state = screenshotKey;
+                      containerHeight.value = 0;
+                    }),
                 NavBarButtom(
-                    onTap: () =>
-                        ref.read(currentPageProvider.state).state = contactKey,
-                    text: 'Contact'),
+                    text: 'Contact',
+                    onTap: () {
+                      ref.read(currentPageProvider.state).state = contactKey;
+                      containerHeight.value = 0;
+                    }),
               ],
             ),
           ),
