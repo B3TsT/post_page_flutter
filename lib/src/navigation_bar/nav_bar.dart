@@ -143,13 +143,20 @@ class MobileNavBar extends HookConsumerWidget {
                 Material(
                   child: InkWell(
                     splashColor: Colors.white60,
+                    // highlightColor: Colors.transparent,
+                    // splashColor: Colors.transparent,
                     onTap: () {
                       final height = containerHeight.value > 0 ? 0.0 : 240.0;
                       containerHeight.value = height;
                     },
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.black54,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: navBarColor,
+                      ),
+                      child: Icon(
+                        Icons.menu,
+                        color: Colors.black54,
+                      ),
                     ),
                   ),
                 ),
